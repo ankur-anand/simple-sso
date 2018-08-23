@@ -1,19 +1,22 @@
 const express = require("express");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 const app = express();
 const engine = require("ejs-mate");
 const router = require("./router");
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(morgan("dev"));
 app.engine("ejs", engine);
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
+app.use("/simplesso", router);
 app.get("/", (req, res, next) => {
   res.render("index", { what: "SSO-Server", title: "SSO-Server | Home" });
 });
-
-app.use("/simplesso", router);
 
 app.use((req, res, next) => {
   // catch 404 and forward to error handler

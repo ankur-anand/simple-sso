@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const controller = require("../controller");
 
-router.get("/health", (req, res) => {
-  return res.status(200).json({ message: 200 });
-});
+router
+  .route("/login")
+  .get((req, res) => {
+    return res.render("login", { title: "SSO-Server | Login" });
+  })
+  .post(controller.doLogin);
+
 module.exports = router;
