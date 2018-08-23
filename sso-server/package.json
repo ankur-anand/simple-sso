@@ -1,0 +1,22 @@
+{
+  "name": "sso-server",
+  "version": "1.0.0",
+  "description": "\"A Single Sign On Server\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sso",
+    "node.js",
+    "sso-nodejs"
+  ],
+  "author": "Ankur Anand",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "ejs-mate": "^2.3.0",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  }
+}
