@@ -2,8 +2,16 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const engine = require("ejs-mate");
+const session = require("express-session");
 const router = require("./router");
 
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
