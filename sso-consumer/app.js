@@ -26,7 +26,7 @@ app.use(checkSSORedirect());
 
 app.get("/", isAuthenticated, (req, res, next) => {
   res.render("index", {
-    what: "SSO-Consumer One",
+    what: `SSO-Consumer One ${JSON.stringify(req.session.user)}`,
     title: "SSO-Consumer | Home"
   });
 });

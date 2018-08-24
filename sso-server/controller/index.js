@@ -115,7 +115,7 @@ const verifySsoToken = async (req, res, next) => {
   // if the application token is not present or ssoToken request is invalid
   // if the ssoToken is not present in the cache some is
   // smart.
-
+  console.log(req.headers, req.body);
   if (
     appToken == null ||
     ssoToken == null ||

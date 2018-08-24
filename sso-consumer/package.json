@@ -9,10 +9,12 @@
   "author": "Ankur Anand",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "ejs": "^2.6.1",
     "ejs-mate": "^2.3.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.0"
   }
 }
