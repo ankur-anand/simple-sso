@@ -12,6 +12,10 @@ app.use(
     saveUninitialized: true
   })
 );
+app.use((req, res, next) => {
+  console.log(req.session);
+  next();
+});
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

@@ -6,7 +6,7 @@ const isAuthenticated = (req, res, next) => {
   const redirectURL = `${req.protocol}://${req.headers.host}${req.path}`;
   if (req.session.user == null) {
     return res.redirect(
-      `http://localhost:3010/simplesso/login?serviceURL=${redirectURL}`
+      `http://sso.ankuranand.com:3010/simplesso/login?serviceURL=${redirectURL}`
     );
   }
   next();
