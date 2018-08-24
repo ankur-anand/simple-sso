@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const engine = require("ejs-mate");
-
+const isAuthenticated = require("./isAuthenticated");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -11,7 +11,7 @@ app.engine("ejs", engine);
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
-app.get("/", (req, res, next) => {
+app.get("/", isAuthenticated, (req, res, next) => {
   res.render("index", {
     what: "SSO-Consumer One",
     title: "SSO-Consumer | Home"
