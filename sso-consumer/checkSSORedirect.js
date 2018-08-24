@@ -1,5 +1,5 @@
-const URL = require("url").URL;
-
+const url = require("url");
+const { URL } = url;
 const validReferOrigin = "http://localhost:3010";
 
 const ssoRedirect = () => {
@@ -13,12 +13,15 @@ const ssoRedirect = () => {
       if (req.headers.referer == null) return next();
       // Validate the refer too for better security for your own application
       const referURL = new URL(req.headers.referer);
+
       // validate the referer origin
       if (referURL.origin !== validReferOrigin) {
         return res.status(400).json({ message: "BAD SSO SERVER" });
       }
+      // to remove the ssoToken in query parameter redirect.
+      const redirectURL = url.parse(req.url).pathname;
       req.session.user = ssoToken;
-      return next();
+      return res.redirect(`${redirectURL}`);
     }
     return next();
   };
