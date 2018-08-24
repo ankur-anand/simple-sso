@@ -12,6 +12,7 @@
     "ejs": "^2.6.1",
     "ejs-mate": "^2.3.0",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "morgan": "^1.9.0"
   }
 }

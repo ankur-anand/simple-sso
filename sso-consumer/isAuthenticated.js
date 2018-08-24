@@ -4,11 +4,12 @@ const isAuthenticated = (req, res, next) => {
   // pass the redirect URL as current URL
   // continueTo is where the sso should redirect in case of valid ssoToKen
   const redirectURL = `${req.protocol}://${req.headers.host}${req.path}`;
-  if (req.user == null) {
+  if (req.session.user == null) {
     return res.redirect(
-      `http://localhost:3010/simplesso/login?redirectTo=${redirectURL}`
+      `http://localhost:3010/simplesso/login?serviceURL=${redirectURL}`
     );
   }
+  next();
 };
 
 module.exports = isAuthenticated;
