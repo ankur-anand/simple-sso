@@ -156,6 +156,9 @@ const doLogin = (req, res, next) => {
   const id = encodedId();
   req.session.user = id;
   sessionUser[id] = email;
+  if (serviceURL == null) {
+    return res.redirect("/");
+  }
   const url = new URL(serviceURL);
   const intrmid = encodedId();
   storeApplicationInCache(url.origin, id, intrmid);
@@ -168,20 +171,29 @@ const login = (req, res, next) => {
   // This can also be used to verify the origin from where the request has came in
   // for the redirection
   const { serviceURL } = req.query;
-  const url = new URL(serviceURL);
-  if (alloweOrigin[url.origin] !== true) {
-    return res
-      .status(400)
-      .json({ message: "Your are not allowed to access the sso-server" });
+  // direct access will give the error inside new URL.
+  if (serviceURL != null) {
+    const url = new URL(serviceURL);
+    if (alloweOrigin[url.origin] !== true) {
+      return res
+        .status(400)
+        .json({ message: "Your are not allowed to access the sso-server" });
+    }
+  }
+  console.log(req.session.user);
+  if (req.session.user != null && serviceURL == null) {
+    return res.redirect("/");
   }
   // if global session already has the user directly redirect with the token
-  if (req.session.user != null) {
+  if (req.session.user != null && serviceURL != null) {
     const intrmid = encodedId();
     storeApplicationInCache(url.origin, req.session.user, intrmid);
     return res.redirect(`${serviceURL}?ssoToken=${intrmid}`);
   }
 
-  return res.render("login", { title: "SSO-Server | Login" });
+  return res.render("login", {
+    title: "SSO-Server | Login"
+  });
 };
 
 module.exports = Object.assign({}, { doLogin, login, verifySsoToken });

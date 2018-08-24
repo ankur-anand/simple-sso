@@ -22,7 +22,10 @@ app.set("view engine", "ejs");
 
 app.use("/simplesso", router);
 app.get("/", (req, res, next) => {
-  res.render("index", { what: "SSO-Server", title: "SSO-Server | Home" });
+  res.render("index", {
+    what: `SSO-Server ${req.session.user}`,
+    title: "SSO-Server | Home"
+  });
 });
 
 app.use((req, res, next) => {
