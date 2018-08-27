@@ -144,8 +144,8 @@ const verifySsoToken = async (req, res, next) => {
 };
 const doLogin = (req, res, next) => {
   // do the validation with email and password
-  // but the goal is not to do the same
-  // like checing with Datebase and all, we are skiping these section
+  // but the goal is not to do the same in this right now,
+  // like checking with Datebase and all, we are skiping these section
   const { email, password } = req.body;
   if (!(userDB[email] && password === userDB[email].password)) {
     return res.status(404).json({ message: "Invalid email and password" });
@@ -180,13 +180,11 @@ const login = (req, res, next) => {
         .json({ message: "Your are not allowed to access the sso-server" });
     }
   }
-  console.log(req.session.user);
   if (req.session.user != null && serviceURL == null) {
     return res.redirect("/");
   }
   // if global session already has the user directly redirect with the token
   if (req.session.user != null && serviceURL != null) {
-    console.log("user already logged in redirecting");
     const url = new URL(serviceURL);
     const intrmid = encodedId();
     storeApplicationInCache(url.origin, req.session.user, intrmid);
