@@ -111,11 +111,9 @@ const generatePayload = ssoToken => {
 const verifySsoToken = async (req, res, next) => {
   const appToken = appTokenFromRequest(req);
   const { ssoToken } = req.query;
-  console.log(appToken, ssoToken);
   // if the application token is not present or ssoToken request is invalid
   // if the ssoToken is not present in the cache some is
   // smart.
-  console.log(req.headers, req.body);
   if (
     appToken == null ||
     ssoToken == null ||
