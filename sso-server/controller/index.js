@@ -103,7 +103,13 @@ const generatePayload = ssoToken => {
   const email = appPolicy.shareEmail === true ? userEmail : undefined;
   const payload = {
     ...{ ...appPolicy },
-    ...{ email, shareEmail: undefined, uid: user.userId }
+    ...{
+      email,
+      shareEmail: undefined,
+      uid: user.userId,
+      // global SessionID for the logout functionality.
+      globalSessionID: globalSessionToken
+    }
   };
   return payload;
 };
