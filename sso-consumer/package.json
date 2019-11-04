@@ -15,6 +15,6 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.3.0",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.1"
   }
 }
