@@ -252,28 +252,28 @@ Brief look at the functions that sso-client and sso-server that we’ve implemen
 
 **SSO-Consumer**
 
-**1.** The sso-consumer subsystem does not log in to the user request and jumps to the sso server for authentication.
-**2.** Receive the token sent by the sso authentication server.
-**3.** Communicate with sso-server to verify the validity of the token.
-**4.** Receives a JWT, verifies the JWT using the public key.
-**5.** Establish a local session
+1. The sso-consumer subsystem does not log in to the user request and jumps to the sso server for authentication.
+2. Receive the token sent by the sso authentication server.
+3. Communicate with sso-server to verify the validity of the token.
+4. Receives a JWT, verifies the JWT using the public key.
+5. Establish a local session
 
 **Sso-server**
 
-**1.** Verify the user’s login information.
-**2.** Create a global session.
-**3.** Create an authorization token.
-**4.** Send a token with sso-client communication.
-**5.** Verify sso-client token validity.
-**6.** Send a JWT with the user information.
+1. Verify the user’s login information.
+2. Create a global session.
+3. Create an authorization token.
+4. Send a token with sso-client communication.
+5. Verify sso-client token validity.
+6. Send a JWT with the user information.
 
 In summary, there are many options for system integration single sign-on solutions, each of which has its own advantages and adaptation environment. Building one from scratch is an iterative project that needs to analyze the characteristics of each system, including login methods, user information storage and synchronization, etc., and cannot blindly rely on the single way to solve the problem.
 
 Similarly we can implement the “Logout”, just we need to consider these three relationship in mind while writing the “Logout” Functionality.
 
-**1.** Local session exists, global session must exist.
-**2.** Global session exists, local session does not necessarily exist.
-**3.** Global session is destroyed, local session must be destroyed.
+1. Local session exists, global session must exist.
+2. Global session exists, local session does not necessarily exist.
+3. Global session is destroyed, local session must be destroyed.
 
 ---
 
