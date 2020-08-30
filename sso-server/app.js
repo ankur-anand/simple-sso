@@ -9,7 +9,7 @@ app.use(
   session({
     secret: "keyboard cat",
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
 );
 app.use((req, res, next) => {
@@ -26,9 +26,10 @@ app.set("view engine", "ejs");
 
 app.use("/simplesso", router);
 app.get("/", (req, res, next) => {
+  const user = req.session.user || "unlogged";
   res.render("index", {
-    what: `SSO-Server ${req.session.user}`,
-    title: "SSO-Server | Home"
+    what: `SSO-Server ${user}`,
+    title: "SSO-Server | Home",
   });
 });
 
@@ -42,7 +43,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   console.error({
     message: err.message,
-    error: err
+    error: err,
   });
   const statusCode = err.status || 500;
   let message = err.message || "Internal Server Error";
