@@ -21,7 +21,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "hashids": "^1.2.2",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "^1.9.0",
     "uuid": "^3.4.0"
   }
